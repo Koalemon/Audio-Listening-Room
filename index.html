@@ -6,15 +6,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
     <style>
         :root {
-            --primary: #8b5cf6; /* 主紫色 */
-            --primary-light: #ddd6fe; /* 浅紫 */
-            --bg: #f8fafc; /* 背景白 */
+            --primary: #8b5cf6;
+            /* 主紫色 */
+            --primary-light: #ddd6fe;
+            /* 浅紫 */
+            --bg: #f8fafc;
+            /* 背景白 */
             --card-bg: #ffffff;
             --text-main: #1e293b;
             --text-sub: #64748b;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
             font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
@@ -35,6 +42,7 @@
             height: 85vh;
             margin-top: 20px;
         }
+
         .player-card {
             background: var(--card-bg);
             border-radius: 24px;
@@ -65,6 +73,7 @@
             z-index: 10;
             pointer-events: none;
         }
+
         .rotate-wrapper {
             position: relative;
             width: 100%;
@@ -88,7 +97,6 @@
             height: 205px;
             border-radius: 50%;
             overflow: hidden;
-            
             background: var(--primary-light);
         }
 
@@ -96,28 +104,44 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            
         }
-
-        
 
         @keyframes rotateCover {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
-        .info { text-align: center; margin-bottom: 20px; width: 100%; }
-        .info h2 { font-size: 1.4rem; margin-bottom: 8px; color: var(--primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        
+        .info {
+            text-align: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .info h2 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         #visualizer {
             width: 100% !important;
             height: 60px;
             margin-bottom: 20px;
         }
 
-        audio { width: 100%; height: 40px; }
+        audio {
+            width: 100%;
+            height: 40px;
+        }
 
-  
         .list-card {
             background: var(--card-bg);
             border-radius: 24px;
@@ -145,7 +169,10 @@
             width: 200px;
             transition: border-color 0.3s;
         }
-        .search-box:focus { border-color: var(--primary); }
+
+        .search-box:focus {
+            border-color: var(--primary);
+        }
 
         .playlist {
             flex: 1;
@@ -153,8 +180,14 @@
             padding-right: 5px;
         }
 
-        .playlist::-webkit-scrollbar { width: 5px; }
-        .playlist::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 10px; }
+        .playlist::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .playlist::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 10px;
+        }
 
         .audio-item {
             padding: 15px;
@@ -167,7 +200,10 @@
             border: 1px solid transparent;
         }
 
-        .audio-item:hover { background: var(--bg); }
+        .audio-item:hover {
+            background: var(--bg);
+        }
+
         .audio-item.active {
             background: #f5f3ff;
             border-color: var(--primary-light);
@@ -180,33 +216,37 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
         .title-tip {
             text-align: center;
             margin-bottom: 20px;
             width: 100%;
         }
+
         .title-tip h1 {
             font-size: 1.8rem;
             color: var(--primary);
             margin-bottom: 6px;
             font-weight: 600;
         }
+
         .title-tip p {
             font-size: 0.9rem;
             color: var(--text-sub);
             margin: 0;
         }
 
-
         @media (max-width: 850px) {
             .app-container {
                 grid-template-columns: 1fr;
                 height: auto;
             }
+
             .player-card {
                 position: relative;
                 top: 0;
             }
+
             .list-card {
                 height: 500px;
             }
@@ -215,11 +255,13 @@
                 width: 280px;
                 height: 280px;
             }
+
             .cover-wrapper {
                 width: 220px;
                 height: 220px;
             }
         }
+
         * {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -267,10 +309,7 @@
     </div>
 </div>
 
-<!-- <script src="app.obf.js" 
-        integrity="sha256-HdjmcBpGYhVGYOUY7bxJ+aZAayHOXHPMKU3U9p/+8/M=" 
-        crossorigin="anonymous"></script> -->
-<script src="app.js"></script>
+<script type="module" src="./app.obf.js"></script>
 <script>
     console.info("aa");
     (async () => {
@@ -289,27 +328,8 @@
         console.log('title-tip   :', h1);
         console.log('list-header :', h2);
     })();
-    (async () => {
-        async function getDomainHash(domain) {
-            const buf = await crypto.subtle.digest(
-                'SHA-256', new TextEncoder().encode(domain+"aa")
-            );
-            return btoa(String.fromCharCode(...new Uint8Array(buf)));
-        }
+    
 
-        // 逐个运行拿到哈希值
-        const aa1= await getDomainHash('koalemon.github.io');
-        console.info(aa1)
-    })();
-
-    // window.onload = async () => console.log(await _hashString(playSong.toString()));
-    (async () => {
-        const res = await fetch('app.obf.js');
-        const buf = await res.arrayBuffer();
-        const hashBuf = await crypto.subtle.digest('SHA-256', buf);
-        const hash = btoa(String.fromCharCode(...new Uint8Array(hashBuf)));
-        console.log('sha256-' + hash);
-    })();
     
 </script>
 
