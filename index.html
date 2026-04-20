@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>音乐试听舱</title>
+    <title>音乐试听室</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
     <style>
         :root {
@@ -311,28 +311,7 @@
 </div>
 
 <script type="module" src="./app.obf.js"></script>
-<script>
-    console.info("aa");
-    (async () => {
-        async function getHTMLHash(selector) {
-            const el = document.querySelector(selector);
-            if (!el) { console.error('找不到元素:', selector); return; }
-            const html = el.innerHTML.trim();
-            const buf = await crypto.subtle.digest(
-                'SHA-256', new TextEncoder().encode(html)
-            );
-            return btoa(String.fromCharCode(...new Uint8Array(buf)));
-        }
 
-        const h1 = await getHTMLHash('.title-tip');
-        const h2 = await getHTMLHash('.list-header');
-        console.log('title-tip   :', h1);
-        console.log('list-header :', h2);
-    })();
-    
-
-    
-</script>
 
 </body>
 </html>
