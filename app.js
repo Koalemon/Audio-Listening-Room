@@ -132,10 +132,7 @@
     function draw() {
         // 1. 循环调用自身
         requestAnimationFrame(draw);
-        if (canvas.width === 0) {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-        }
+        
         const now = Date.now();
         const elapsedTime = now - lastDrawTime;
         if (elapsedTime < FRAME_INTERVAL) return;
@@ -145,8 +142,10 @@
 
     
         const drawData = engine.get_symmetric_spectrum(dataArray);
-        if (!drawData || drawData.length === 0) return;
-
+        if (!drawData || drawData.length === 0) {
+            console.info("???");
+            return;
+        } 
         const raw = engine.compute_bars(drawData, canvas.width, canvas.height);
 
         const barCount = raw.length / 5;
