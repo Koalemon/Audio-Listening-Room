@@ -65,6 +65,7 @@
         
         const fileName = path.name;
         currentTitle.innerText = fileName;
+        audio.crossOrigin = "anonymous";
         audio.src = path.path;
 
         coverImg.src = DEFAULT_COVER;
@@ -131,7 +132,10 @@
     function draw() {
         // 1. 循环调用自身
         requestAnimationFrame(draw);
-
+        if (canvas.width === 0) {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
         const now = Date.now();
         const elapsedTime = now - lastDrawTime;
         if (elapsedTime < FRAME_INTERVAL) return;
